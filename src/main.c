@@ -4,12 +4,9 @@
 
 int main(int argc, char **argv){
     struct chip8 chip8;
-    chip8.registers.SP = 0;
-    chip8_stack_push(&chip8, 0xff);
-    chip8_stack_push(&chip8, 0xaa);
-
-    printf("%x\n", chip8_stack_pop(&chip8));
-    printf("%x\n", chip8_stack_pop(&chip8));
+    chip8_keyboard_down(&chip8.keyboard, 0x0f);
+    chip8_keyboard_up(&chip8.keyboard, 0x0f);
+    printf("%i\n", chip8_keyboard_is_down(&chip8.keyboard, 0x0f));
 
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_Window *window = SDL_CreateWindow(
