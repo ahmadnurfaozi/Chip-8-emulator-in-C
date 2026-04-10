@@ -12,7 +12,7 @@ int chip8_keyboard_map(const char *map, char key)
     {
         if (map[i] == key)
         {
-            return 1;
+            return i;
         }
     }
 
