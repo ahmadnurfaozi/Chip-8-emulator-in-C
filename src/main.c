@@ -3,14 +3,16 @@
 #include "chip8.h"
 
 const char keyborad_map[CHIP8_TOTAL_KEYS] = {
-        SDLK_0, SDLK_1, SDLK_2, SDLK_3, SDLK_4, SDLK_5,
-        SDLK_6, SDLK_7, SDLK_8, SDLK_9, SDLK_a, SDLK_b,
-        SDLK_c, SDLK_d, SDLK_e, SDLK_f};
+    SDLK_0, SDLK_1, SDLK_2, SDLK_3, SDLK_4, SDLK_5,
+    SDLK_6, SDLK_7, SDLK_8, SDLK_9, SDLK_a, SDLK_b,
+    SDLK_c, SDLK_d, SDLK_e, SDLK_f
+};
 
 int main(int argc, char **argv)
 {
-    
+
     struct chip8 chip8;
+    chip8_init(&chip8);
 
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_Window *window = SDL_CreateWindow(
