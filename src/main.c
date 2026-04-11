@@ -5,14 +5,14 @@
 const char keyborad_map[CHIP8_TOTAL_KEYS] = {
     SDLK_0, SDLK_1, SDLK_2, SDLK_3, SDLK_4, SDLK_5,
     SDLK_6, SDLK_7, SDLK_8, SDLK_9, SDLK_a, SDLK_b,
-    SDLK_c, SDLK_d, SDLK_e, SDLK_f
-};
+    SDLK_c, SDLK_d, SDLK_e, SDLK_f};
 
 int main(int argc, char **argv)
 {
 
     struct chip8 chip8;
     chip8_init(&chip8);
+    chip8_screen_set(&chip8.screen, 10, 0);
 
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_Window *window = SDL_CreateWindow(
@@ -65,8 +65,23 @@ int main(int argc, char **argv)
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-        SDL_Rect r = {0, 0, 40, 40};
-        SDL_RenderFillRect(renderer, &r);
+
+        for (int x = 0; x < CHIP8_HEIGHT; x++)
+        {
+            for (int y = 0; y < CHIP8_WIDTH; y++)
+            {
+                if (chip8_screen_is_set(&chip8.screen, x, y))
+                {
+                    SDL_Rect r = {
+                        x * CHIP8_WINDOW_MULTIPLIER,
+                        y * CHIP8_WINDOW_MULTIPLIER,
+                        CHIP8_WINDOW_MULTIPLIER,
+                        CHIP8_WINDOW_MULTIPLIER};
+                    SDL_RenderFillRect(renderer, &r);
+                };
+            }
+        }
+
         SDL_RenderPresent(renderer);
     }
 

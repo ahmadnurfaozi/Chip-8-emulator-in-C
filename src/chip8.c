@@ -1,7 +1,6 @@
 #include "chip8.h"
 #include <memory.h>
 
-/* Standard Chip-8 font (Cowgod's ref §2.4): 16 glyphs, 5 bytes each, 8×5 px */
 const unsigned char chip8_default_character_set[] = {
     /* 0 */ 0xF0, 0x90, 0x90, 0x90, 0xF0,
     /* 1 */ 0x20, 0x60, 0x20, 0x20, 0x70,
